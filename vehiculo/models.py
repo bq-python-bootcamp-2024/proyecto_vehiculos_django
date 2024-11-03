@@ -23,3 +23,24 @@ class Vehiculo(models.Model):
     precio = models.IntegerField()
     fecha_de_creacion = models.DateTimeField(auto_now_add=True)
     fecha_de_modificacion = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'Vehículo {self.categoria}: {self.marca} {self.modelo} (${self.precio})'
+    
+    # Extra: Configurar nombres visibles del modelo
+    # Extra: Ordenar por precio de forma ascendente
+    # Crear permiso 'visualizar_catalogo'
+    class Meta:
+        verbose_name = 'vehículo'
+        verbose_name_plural = 'vehículos'
+        ordering = ['precio']
+        permissions = (('visualizar_catalogo', 'Permite a un usuario visualizar el catálogo de vehículos'),)
+
+    # Crear un campo dinámico en base al precio
+    def condicion_de_precio(self):
+        if self.precio >= 0 and self.precio <= 10000:
+            return 'Bajo'
+        elif self.precio > 10000 and self.precio <= 30000:
+            return 'Medio'
+        elif self.precio > 30000:
+            return 'Alto'
