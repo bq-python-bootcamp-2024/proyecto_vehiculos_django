@@ -40,7 +40,7 @@ El proyecto se encuentra en desarrollo.
 
 ## Endpoint: `/vehiculo/add`
 - **Método**: GET, POST
-- **Descripcion**: Permite agregar un nuevo vehículo.
+- **Descripcion**: Permite a usuarios registrados agregar un nuevo vehículo.
   - **GET**: Muestra un formulario para ingresar los detalles del vehículo.
   - **POST**: Envía el formulario para crear un nuevo registro de vehículo.
 - **Campos del Formulario**:
@@ -68,7 +68,7 @@ El proyecto se encuentra en desarrollo.
 
 ## Endpoint: `/vehiculo/list`
 - **Método**: GET
-- **Descripción**: Muestra la lista de vehículos disponibles en el catálogo.
+- **Descripción**: Permite a usuarios registrados ver la lista de vehículos disponibles en el catálogo.
 - **Respuesta**: Retorna un listado HTML de todos los vehículos registrados.
 - **Ejemplos de Solicitud**:
   ```http

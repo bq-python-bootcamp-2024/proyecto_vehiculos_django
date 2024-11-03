@@ -1,21 +1,42 @@
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Vehículos</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
-          </li>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Vehículos</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Inicio</a>
+        </li>
+        {% if user.is_authenticated %}
+          {% if perms.vehiculo.add_vehiculo %}
           <li class="nav-item">
             <a class="nav-link" href="/vehiculo/add">Agregar</a>
           </li>
+          {% endif%}
+          {% if perms.vehiculo.visualizar_catalogo %}
           <li class="nav-item">
-            <a class="nav-link" href="/vehiculo/list">Listar</a> 
+            <a class="nav-link" href="/vehiculo/list">Listar</a>
           </li>
-        </ul>
-      </div>
+          {% endif %}
+        {% endif %}
+      </ul>
+      <ul class="navbar-nav ms-auto align-items-center">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <span class="text-white">Bienvenido/a, {{ user.username }}</span>
+            <span class="px-2 text-white">|</span>
+            <a class="nav-link d-inline" href="/logout">Cerrar sesión</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link d-inline" href="/login">Iniciar sesión</a>
+            <span class="px-2 text-white">|</span>
+            <a class="nav-link d-inline" href="/register">Registrarse</a>
+          </li>
+        {% endif %}
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
