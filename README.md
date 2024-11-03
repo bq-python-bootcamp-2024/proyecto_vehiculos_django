@@ -11,6 +11,7 @@ El proyecto se encuentra en desarrollo.
 - Se crea la aplicación vehiculo para implementar las funcionalidades solicitadas.
 - Se crea un formulario para agregar vehículos en `/vehiculo/add`.
 - Se crea un cátalogo para listar los vehículos en `/vehiculo/list`.
+- Se crea un formulario para registrar usuarios, iniciar y cerrar sesión.
 
 # Instalación
 
@@ -64,3 +65,74 @@ El proyecto se encuentra en desarrollo.
 - **Respuesta**:
   - **200 OK**: Vehículo agregado exitosamente (redirecciona a la página principal o a la URL especificada).
   - **400 Bad Request**: Formulario inválido con mensajes de error (si faltan campos requeridos o contienen valores inválidos).
+
+## Endpoint: `/vehiculo/list`
+- **Método**: GET
+- **Descripción**: Muestra la lista de vehículos disponibles en el catálogo.
+- **Respuesta**: Retorna un listado HTML de todos los vehículos registrados.
+- **Ejemplos de Solicitud**:
+  ```http
+  GET /vehiculo/list/
+- **Respuesta**:
+- **200 OK**: Catálogo de vehículos cargado correctamente.
+
+## Endpoint: `/register`
+- **Método**: GET, POST
+- **Descripción**: Permite a los usuarios registrarse en el sistema.
+  - **GET**: Muestra un formulario para registrar un nuevo usuario.
+  - **POST**: Envía el formulario para crear una nueva cuenta de usuario.
+- **Campos del Formulario**:
+  - `username` (string, requerido): Nombre de usuario único.
+  - `password` (string, requerido): Contraseña del usuario.
+  - `email` (string, requerido): Correo electrónico del usuario.
+- **Ejemplos de Solicitud**:
+  - **GET**:
+    ```http
+    GET /register/
+    ```
+  - **POST**:
+    ```http
+    POST /register/
+    Content-Type: application/x-www-form-urlencoded
+
+    username=johndoe&password=password123&email=johndoe@example.com
+    ```
+- **Respuesta**:
+  - **302 Redirect**: Usuario registrado exitosamente y se redirige al cátalogo de vehículos.
+  - **400 Bad Request**: Formulario inválido con mensajes de error.
+
+## Endpoint: `/login`
+- **Método**: POST
+- **Descripción**: Permite a los usuarios iniciar sesión en el sistema.
+  - **GET**: Muestra un formulario para iniciar sesión.
+  - **POST**: Envía el formulario para iniciar sesión.
+- **Campos del Formulario**:
+  - `username` (string, requerido): Nombre de usuario.
+  - `password` (string, requerido): Contraseña del usuario.
+- **Ejemplos de Solicitud**:
+  - **GET**:
+    ```http
+    GET /login/
+    ```
+  - **POST**:
+    ```http
+    POST /login/
+    Content-Type: application/x-www-form-urlencoded
+
+    username=johndoe&password=password123
+    ```
+- **Respuesta**:
+  - **302 Redirect**: Usuario inicia sesión exitosamente y se redirige al cátalogo de vehículos.
+  - **400 Bad Request**: Formulario inválido con mensajes de error.
+
+## Endpoint: `/logout`
+- **Método**: POST
+- **Descripción**: Permite a los usuarios cerrar sesión.
+  - **GET**: Cierra la sesión del usuario actual.
+- **Ejemplos de Solicitud**:
+  - **GET**:
+    ```http
+    GET /logout/
+    ```
+- **Respuesta**:
+  - **302 Redirect**: Se cierra sesión exitosamente y se redirige el usuario a la página de inicio.

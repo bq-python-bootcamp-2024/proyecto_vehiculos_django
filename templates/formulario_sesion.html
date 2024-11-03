@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<h1>{{ titulo }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-secondary">{{ accion|default:'Enviar' }}</button>
+    {% if comentario %}
+    <p class="py-4">{{ comentario }} <a href="{{ enlace }}">aquí.</a></p>
+    {% endif%}
+</form>
+{% endblock content %}
