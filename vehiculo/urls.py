@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     # Formulario agregar vehículos
     path('vehiculo/add/', views.agregar_vehiculo, name='agregar_vehiculo'),
+    # Catálogo de vehículos
+    path('vehiculo/list/', views.listar_vehiculo, name='listar_vehiculo'),
 ]

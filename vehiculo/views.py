@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 # Modelos y Formularios
 from .forms import VehiculoForm
+from .models import Vehiculo
 
 # Página de inicio
 def index(request):
@@ -35,3 +36,13 @@ def agregar_vehiculo(request):
             'form': form
         }
         return render(request, 'agregar_vehiculo.html', context=context)
+
+# Cátalogo de vehículos  
+def listar_vehiculo(request):
+    vehiculos = Vehiculo.objects.all()
+    context = {
+        'titulo_documento': 'Listado vehículos',
+        'titulo': 'Listado vehículos',
+        'vehiculos': vehiculos
+    }
+    return render(request, 'catalogo_vehiculos.html', context=context)

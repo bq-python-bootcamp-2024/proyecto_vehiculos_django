@@ -9,7 +9,8 @@ Catálogo de vehículos que permite agregar y listar vehículos.
 El proyecto se encuentra en desarrollo. 
 - Se define el nombre "proyecto_vehiculos_django" para el directorio global del proyecto y el nombre "config" para el paquete principal del proyecto.
 - Se crea la aplicación vehiculo para implementar las funcionalidades solicitadas.
-- Se crea un formulario para agregar vehículos en `/vehiculos/add`.
+- Se crea un formulario para agregar vehículos en `/vehiculo/add`.
+- Se crea un cátalogo para listar los vehículos en `/vehiculo/list`.
 
 # Instalación
 
