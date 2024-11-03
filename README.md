@@ -6,24 +6,40 @@ Catálogo de vehículos que permite agregar y listar vehículos.
 
 # Hitos de desarrolo
 
-El proyecto se encuentra en desarrollo. 
+El prototipo del proyecto se encuentra terminado. 
 - Se define el nombre "proyecto_vehiculos_django" para el directorio global del proyecto y el nombre "config" para el paquete principal del proyecto.
-- Se crea la aplicación vehiculo para implementar las funcionalidades solicitadas.
+- Se crea la aplicación vehículo para implementar las funcionalidades solicitadas.
 - Se crea un formulario para agregar vehículos en `/vehiculo/add`.
 - Se crea un cátalogo para listar los vehículos en `/vehiculo/list`.
 - Se crea un formulario para registrar usuarios, iniciar y cerrar sesión.
+- Se aplican restricciones de permisos de usuario.
 
 # Instalación
 
 1. Clonar el repositorio: `git clone https://github.com/bq-python-bootcamp-2024/proyecto_vehiculos_django.git`
 
-2. (Opcional) Crear entorno para el proyecto: [Crear entorno con `virtualenvwrapper-win`](https://pypi.org/project/virtualenvwrapper-win/)
-   
+2. (Opcional) Crear entorno para el proyecto: [Crear entorno con `virtualenvwrapper`](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
+
 3.  Instalar las dependencias listadas en ["requirements.txt"](requirements.txt): `python -m pip install -r requirements.txt`
 
 2. Copiar archivo .env con información protegida en el directorio principal del proyecto (enviado a la plataforma).
 
-3. Poner en marcha el servidor de prueba: `python manage.py runserver`
+3. Realizar migraciones: `python manage.py migrate`
+
+4. Crear un usuario administrador: `python manage.py createsuperuser`
+
+5. Poner en marcha el servidor de prueba: `python manage.py runserver`
+
+# Instrucciones para habilitar permisos de usuario
+1. En el [sitio administrativo del proyecto](/admin) se puede crear un usuario o modificar el acceso a las funcionalidades de la aplicación vehículo y al sitio administrativo.
+
+2. Para permitir al usuario agregar vehículos se debe conceder el permiso add_vehiculo.
+ 
+3. Para permitir a los usuarios visualizar el cátalogo de vehículos se debe conceder el permiso visualizar_catalogo. Concedido por defecto al crear el usuario por la aplicación.
+
+4. Para habilitar acceso a un usuario al sitio administrativo se debe habilitar la casilla 'Staff Status' del usuario requerido en el [sitio administrativo del proyecto](/admin) utilizando la cuenta de administrador.
+
+Nota. El permiso para ver vehículos es concedido por defecto al crear el usuario por la aplicación.
 
 # Endpoints (rutas) disponibles
 
@@ -136,3 +152,14 @@ El proyecto se encuentra en desarrollo.
     ```
 - **Respuesta**:
   - **302 Redirect**: Se cierra sesión exitosamente y se redirige el usuario a la página de inicio.
+
+## Endpoint: `/admin`
+- **Método**: GET
+- **Descripcion**: Sitio administrativo del proyecto
+- **Response**: Retorna el contenido HTML del sitio administrativo del proyecto
+- **Ejemplos de Solicitud**:
+  ```
+  GET /admin
+  ```
+- **Respuesta**:
+  - **200 OK**: El sitio administrativo carga correctamente.
